@@ -1,17 +1,23 @@
--- Books Table [cite: 11]
+-- Create the database
+CREATE DATABASE `BookstoreDB`;
+
+-- Use the created database
+USE `BookstoreDB`;
+
+-- Create Books Table
 CREATE TABLE `Books` (
    `ISBN` VARCHAR(20) PRIMARY KEY,
    `Title` VARCHAR(255) NOT NULL,
    `Price` DECIMAL(10,2) NOT NULL
 );
 
--- Authors Table [cite: 11]
+-- Create Authors Table
 CREATE TABLE `Authors` (
-   `AuthorID` INT PRIMARY KEY,
+   `AuthorID` INT PRIMARY KEY AUTO_INCREMENT,
    `Name` VARCHAR(255) NOT NULL
 );
 
--- BookAuthors Table (Associative Entity) [cite: 11]
+-- Create BookAuthors Table (linking table for many-to-many relationship)
 CREATE TABLE `BookAuthors` (
    `ISBN` VARCHAR(20),
    `AuthorID` INT,
@@ -20,22 +26,22 @@ CREATE TABLE `BookAuthors` (
    FOREIGN KEY (`AuthorID`) REFERENCES `Authors`(`AuthorID`)
 );
 
--- Customers Table [cite: 11]
+-- Create Customers Table
 CREATE TABLE `Customers` (
-   `CustomerID` INT PRIMARY KEY,
+   `CustomerID` INT PRIMARY KEY AUTO_INCREMENT,
    `Name` VARCHAR(255) NOT NULL,
    `Email` VARCHAR(255) NOT NULL
 );
 
--- Orders Table [cite: 11]
+-- Create Orders Table
 CREATE TABLE `Orders` (
-   `OrderID` INT PRIMARY KEY,
+   `OrderID` INT PRIMARY KEY AUTO_INCREMENT,
    `CustomerID` INT,
    `OrderDate` DATE NOT NULL,
    FOREIGN KEY (`CustomerID`) REFERENCES `Customers`(`CustomerID`)
 );
 
--- OrderDetails Table [cite: 11]
+-- Create OrderDetails Table
 CREATE TABLE `OrderDetails` (
    `OrderID` INT,
    `ISBN` VARCHAR(20),
